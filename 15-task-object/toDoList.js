@@ -4,10 +4,8 @@ const ToDoList = {
     lastID: 0,
 
     addTask(title, priority) {
-      const id = this.lastID + 1;
-      const task = { id, title, priority };
-      this.tasks.push(task);
-      this.lastID = id;
+      this.tasks.push({ id, title, priority });  
+      this.lastID = this.lastID + 1;  
     },
   
     deleteTask(id) {
@@ -19,18 +17,18 @@ const ToDoList = {
       if (task) {
         task.title = title;
         task.priority = priority;
-      }else {
+      } else {
         console.log('Task not found');
       }
     },
 
     sortTasks(sortBy, order = 'asc') {
-      if (sortBy === 'id') {
-        this.tasks.sort((a, b) => (order === 'asc' ? a.id - b.id : b.id - a.id));
-      } else if (sortBy === 'priority') {
-        this.tasks.sort((a, b) => (order === 'asc' ? a.priority - b.priority : b.priority - a.priority));
-      }
-    },
+      if (sortBy !== 'id' || sortBy !== 'priority') {  
+        console.log('Invalid sortBy value');  
+        return;  
+      }  
+      this.tasks.sort((a, b) => (order === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy]));  
+    }, 
   };
   
   // Example usage
