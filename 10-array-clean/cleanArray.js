@@ -6,3 +6,9 @@ function cleanArray (array, func) {
     }
     return array;
 }
+
+function isEven (num) {
+    return num % 2 === 0;
+}
+
+console.log(cleanArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], isEven));
